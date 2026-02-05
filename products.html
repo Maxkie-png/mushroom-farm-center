@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>สินค้า — ฟาร์มเห็ดดงน้ำฉ่า</title>
+  <style>
+    :root {
+      --red: #c03535;
+      --dark-red: #a22020;
+      --white: #fff;
+      --muted: #6b6b6b;
+      --radius: 12px;
+      --container: 1100px
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      font-family: "Noto Sans Thai", Arial, sans-serif;
+      margin: 0;
+      color: #222;
+      background: #fff
+    }
+
+    header {
+      background: var(--red);
+      color: #fff;
+      padding: 8px 10px;
+      border-bottom: 4px solid var(--dark-red);
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--container);
+      margin: 0 auto
+    }
+
+    nav {
+      max-width: var(--container);
+      margin: 12px auto;
+      display: flex;
+      justify-content: center;
+      gap: 8px
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+      transition: all 0.2s ease;
+    }
+
+
+    .site {
+      max-width: var(--container);
+      margin: 18px auto;
+      padding: 0 16px
+    }
+
+    h2 {
+      color: var(--dark-red)
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 14px
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+      border: 1px solid #faf0f0;
+      text-align: center
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px
+    }
+
+    .price {
+      color: var(--red);
+      font-weight: 800;
+      margin-top: 8px
+    }
+
+    .qty {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 8px
+    }
+
+    input[type="number"] {
+      width: 70px;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      text-align: center
+    }
+
+    .btn {
+      background: var(--red);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: none;
+      font-weight: 800;
+      cursor: pointer
+    }
+
+    .btn.ghost {
+      background: #fff;
+      color: var(--red);
+      border: 2px solid var(--red)
+    }
+
+    footer {
+      background-color: #c62828;
+      color: #ffffff;
+      padding: 22px 0;
+      text-align: center;
+      margin-top: 40px;
+      border-top: 4px solid var(--red);
+      font-size: 14px;
+    }
+
+    .cart {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 340px;
+      max-width: 92%;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+      overflow: hidden
+    }
+
+    .cart-header {
+      background: var(--dark-red);
+      color: #fff;
+      padding: 10px 14px;
+      font-weight: 800
+    }
+
+    .cart-body {
+      max-height: 320px;
+      overflow: auto;
+      padding: 12px
+    }
+
+    .cart-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px dashed #eee
+    }
+
+    .cart-row img {
+      width: 62px;
+      height: 52px;
+      object-fit: cover;
+      border-radius: 6px
+    }
+
+    .cart-footer {
+      padding: 12px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    @media (max-width:720px) {
+      .brand {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .logo {
+        height: 64px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:0 16px">
+      <div style="display:flex; gap:12px; align-items:center">
+        <img src="รูป/โลโก้.jpg" style="width:100px; height:100px; border-radius:50%">
+        <div>
+          <div style="font-weight:800; font-size:18px">ฟาร์มเห็ดดงน้ำฉ่า</div>
+          <div style="font-size:13px">สินค้า สด จากฟาร์ม</div>
+        </div>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">หน้าแรก</a>
+      <a href="products.html">สินค้า</a>
+      <a href="payment.html">วิธีสั่งซื้อ</a>
+      <a href="Contact Us.html">ติดต่อ</a>
+    </nav>
+  </header>
+
+  <main class="site">
+    <h2>สินค้า</h2>
+    <p style="color:var(--muted)">เลือกสินค้า 3 รายการที่คัดสรรมาให้ลูกค้าเห็นชัดเจน สามารถเลือกจำนวนและเพิ่มลงตะกร้าได้
+    </p>
+
+    <div class="grid" id="productsGrid">
+    </div>
+
+  </main>
+
+  <div class="cart" id="cart">
+    <div class="cart-header" onclick="toggleCart()" style="cursor:pointer">
+      🛒 ตะกร้าสินค้า (<span id="cartCount">0</span>)
+      <span style="float:right" id="cartToggle">−</span>
+    </div>
+
+    <div id="cartContent">
+      <div class="cart-body" id="cartBody">
+        <div style="padding:12px; color:var(--muted)">ยังไม่มีสินค้า</div>
+      </div>
+
+      <div class="cart-footer">
+        <div style="font-weight:800">รวม: <span id="cartTotal">0</span> ฿</div>
+        <div>
+          <button class="btn" onclick="location.href='ชำระเงิน.html'">
+            ไปยังหน้า ชำระเงิน
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      { id: 1, name: 'เห็ดนางฟ้า', price: 60, img: 'รูป/OIP.webp', desc: 'เนื้อเด้ง เหมาะผัด แกง และต้ม' },
+      { id: 2, name: 'เห็ดฟาง', price: 80, img: 'รูป/เห็ดถอบ.webp', desc: 'รสหวาน เหมาะกับอาหารไทยหลากหลาย' },
+      { id: 3, name: 'เห็ดถอบ', price: 120, img: 'รูป/เห็ดฟาง.webp', desc: 'เห็ดพิเศษ สำหรับเมนูเฉพาะ' }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('farm_cart') || '[]');
+
+    function saveCart() { localStorage.setItem('farm_cart', JSON.stringify(cart)); renderCart(); }
+
+    function renderProducts() {
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = '';
+      products.forEach(p => {
+        const el = document.createElement('div');
+        el.className = 'card';
+        el.innerHTML = `
+          <img src="${p.img}" alt="${p.name}">
+          <h3 style="margin:10px 0 6px 0">${p.name}</h3>
+          <div class="price">${p.price} ฿ / กก.</div>
+          <div style="color:var(--muted); font-size:14px; margin-top:8px">${p.desc}</div>
+          <div class="qty">
+            <input type="number" id="qty-${p.id}" min="1" value="1">
+            <button class="btn" style="margin-left:6px" onclick="addToCart(${p.id})">เพิ่มลงรถเข็น</button>
+          </div>
+        `;
+        grid.appendChild(el);
+      });
+    }
+
+    function addToCart(id) {
+      const q = parseInt(document.getElementById('qty-' + id).value) || 1;
+      const p = products.find(x => x.id === id);
+      const existing = cart.find(i => i.id === id);
+      if (existing) existing.qty += q;
+      else cart.push({ id: p.id, name: p.name, price: p.price, qty: q, img: p.img });
+      saveCart();
+      alert('เพิ่มลงตะกร้าแล้ว');
+    }
+
+    function renderCart() {
+      const body = document.getElementById('cartBody');
+      const countEl = document.getElementById('cartCount');
+      const totalEl = document.getElementById('cartTotal');
+      if (cart.length === 0) {
+        body.innerHTML = '<div style="padding:12px; color:var(--muted)">ยังไม่มีสินค้า</div>';
+        countEl.textContent = 0;
+        totalEl.textContent = 0;
+        return;
+      }
+      body.innerHTML = '';
+      let total = 0;
+      cart.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'cart-row';
+        row.innerHTML = `
+          <img src="${item.img}" alt="${item.name}">
+          <div style="flex:1">
+            <div style="font-weight:700">${item.name}</div>
+            <div style="color:var(--muted); font-size:13px">${item.qty} กก. x ${item.price} ฿</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-weight:800">${item.qty * item.price} ฿</div>
+            <div style="margin-top:6px"><button class="btn ghost" onclick="removeOne(${item.id})" style="padding:6px 8px">ลบ 1</button></div>
+          </div>
+        `;
+        body.appendChild(row);
+        total += item.qty * item.price;
+      });
+      countEl.textContent = cart.reduce((s, i) => s + i.qty, 0);
+      totalEl.textContent = total;
+    }
+
+    function removeOne(id) {
+      const idx = cart.findIndex(i => i.id === id);
+      if (idx === -1) return;
+      cart[idx].qty--;
+      if (cart[idx].qty <= 0) cart.splice(idx, 1);
+      saveCart();
+    }
+
+    renderProducts();
+    renderCart();
+  </script>
+
+  <script>
+    let cartOpen = true;
+
+    function toggleCart() {
+      const content = document.getElementById('cartContent');
+      const toggleIcon = document.getElementById('cartToggle');
+
+      cartOpen = !cartOpen;
+      content.style.display = cartOpen ? 'block' : 'none';
+      toggleIcon.textContent = cartOpen ? '−' : '+';
+    }
+  </script>
+
+  <footer>
+    © 2025 ฟาร์มเห็ดดงน้ำฉ่า • สงวนลิขสิทธิ์
+  </footer>
+
+</body>
+
+</html>

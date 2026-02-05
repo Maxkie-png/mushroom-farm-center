@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>สมัครสมาชิก - ฟาร์มเห็ดดงน้ำฉ่า</title>
+
+    <style>
+        :root {
+            --red: #c62828;
+            --dark-red: #8e0000;
+            --white: #ffffff;
+            --muted: #666;
+            --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --container: 1200px;
+        }
+
+        body {
+            font-family: Helvetica, Arial, 'Noto Sans Thai', sans-serif;
+            margin: 0;
+            background: var(--white);
+            color: #1b1b1b;
+        }
+
+        header {
+            background: var(--red);
+            color: #fff;
+            padding: 28px 20px;
+            border-bottom: 6px solid var(--dark-red);
+        }
+
+        .brand {
+            max-width: var(--container);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            margin: 0
+        }
+
+        nav {
+            background: var(--dark-red);
+            padding: 12px 0;
+        }
+
+        nav .wrap {
+            max-width: var(--container);
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+            transition: all 0.2s ease;
+        }
+
+
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--card-shadow);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: var(--dark-red);
+            text-align: center
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 14px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            background: var(--red);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        footer {
+            background-color: #c62828;
+            color: #ffffff;
+            padding: 22px 0;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 4px solid var(--red);
+            font-size: 14px;
+        }
+
+        @media(max-width:600px) {
+            .container {
+                margin: 20px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="brand">
+            <h1>ฟาร์มเห็ดดงน้ำฉ่า</h1>
+            <div>สมัครสมาชิกลูกค้า</div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="wrap">
+            <a href="from.html">สมัครสมาชิก</a>
+            <a href="index.html">หน้าแรก</a>
+            <a href="products.html">สินค้า</a>
+            <a href="payment.html">วิธีสั่งซื้อ</a>
+            <a href="Contact Us.html">ติดต่อ</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>สมัครสมาชิก</h2>
+
+        <label>ชื่อผู้ใช้</label>
+        <input type="text" placeholder="Username" />
+
+        <label>อีเมล</label>
+        <input type="email" placeholder="example@email.com" />
+
+        <label>รหัสผ่าน</label>
+        <input type="password" placeholder="Password" />
+
+        <label>ยืนยันรหัสผ่าน</label>
+        <input type="password" placeholder="Confirm Password" />
+
+        <!-- ปุ่มสมัครสมาชิกเพียงปุ่มเดียว -->
+        <button class="btn" onclick="register()">สมัครสมาชิก</button>
+
+        <script>
+            function register() {
+                // ใส่เงื่อนไขตรวจสอบข้อมูลจริงได้ตามต้องการ เช่น ตรวจสอบชื่อ, อีเมล, ฯลฯ
+                localStorage.setItem("member", "yes"); // เก็บสถานะสมาชิก
+                alert("สมัครสมาชิกสำเร็จ! คุณสามารถสั่งซื้อสินค้าได้แล้ว");
+                window.location.href = "หน้าแรก.html"; // กลับไปหน้าหลักหลังจากสมัครสมาชิก
+            }
+        </script>
+
+    </div>
+
+    <footer>
+        © 2025 ฟาร์มเห็ดดงน้ำฉ่า • ระบบสมัครสมาชิก
+    </footer>
+
+</body>
+
+</html>
