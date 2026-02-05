@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>วิธีการสั่งซื้อ — ฟาร์มเห็ดดงน้ำฉ่า</title>
+
+    <style>
+        :root {
+            --red: #c03535;
+            --dark-red: #a22020;
+            --muted: #6b6b6b;
+            --container: 1000px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: "Noto Sans Thai", Arial, sans-serif;
+            margin: 0;
+            color: #222;
+        }
+
+        header {
+            background: var(--red);
+            color: #fff;
+            padding: 8px 0;
+            border-bottom: 4px solid var(--dark-red);
+        }
+
+        nav {
+            max-width: var(--container);
+            margin: 12px auto;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .08);
+        }
+
+        main {
+            max-width: var(--container);
+            margin: 18px auto;
+            padding: 0 16px;
+        }
+
+        .panel {
+            background: #fff;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .06);
+        }
+
+        .checkout {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 18px;
+            margin-top: 16px;
+        }
+
+        label {
+            font-weight: 700;
+            font-size: 14px
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .btn {
+            background: var(--red);
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-danger {
+            background: #9e1c1c;
+            color: #fff;
+            padding: 8px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .small {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        footer {
+            background: #c62828;
+            color: #fff;
+            text-align: center;
+            padding: 22px 0;
+            margin-top: 40px;
+        }
+
+        @media(max-width:880px) {
+            .checkout {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:0 16px">
+            <div style="display:flex;gap:12px;align-items:center">
+                <img src="รูป/โลโก้.jpg" style="width:100px;height:100px;border-radius:50%">
+                <div>
+                    <div style="font-weight:800;font-size:18px">ฟาร์มเห็ดดงน้ำฉ่า</div>
+                    <div style="font-size:13px">สินค้า สด จากฟาร์ม</div>
+                </div>
+            </div>
+        </div>
+
+        <nav>
+            <a href="หน้าแรก.html">หน้าแรก</a>
+            <a href="products.html">สินค้า</a>
+            <a href="ชำระเงิน.html">วิธีสั่งซื้อ</a>
+            <a href="ติดต่อเรา.html">ติดต่อ</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>วิธีการสั่งซื้อ</h2>
+
+        <div class="panel">
+            <ol>
+                <li>เลือกสินค้า → เพิ่มลงตะกร้า</li>
+                <li>ตรวจสอบรายการและกรอกข้อมูลผู้รับ</li>
+                <li>เลือกช่องทางชำระเงิน</li>
+                <li>แจ้งสลิปทาง Line หลังชำระเงิน</li>
+            </ol>
+        </div>
+
+        <div class="checkout">
+
+            <div>
+                <h3>สรุปรายการ</h3>
+                <div id="summary" class="panel small">กำลังโหลด...</div>
+                <button class="btn-danger" onclick="clearCart()">🗑️ ลบสินค้าทั้งหมด</button>
+            </div>
+
+            <aside class="panel">
+                <h3>ข้อมูลผู้รับ</h3>
+
+                <label>ชื่อผู้รับ</label>
+                <input id="name">
+
+                <label>ที่อยู่จัดส่ง</label>
+                <textarea id="address" rows="3"></textarea>
+
+                <label>โทรศัพท์</label>
+                <input id="phone">
+
+                <label>ช่องทางชำระเงิน</label>
+                <select id="paymethod" onchange="updatePayment()">
+                    <option value="">-- เลือก --</option>
+                    <option value="qr">พร้อมเพย์ (สแกน)</option>
+                    <option value="bank">โอนบัญชี</option>
+                </select>
+
+                <div id="paymentInfo" style="margin-top:12px;display:none">
+
+                    <div id="payQR" style="display:none;text-align:center">
+                        <strong>สแกนจ่ายพร้อมเพย์</strong><br>
+                        <img src="รูป/qr-promptpay.png" style="width:200px;margin-top:8px">
+                    </div>
+
+                    <div id="payBank" style="display:none">
+                        <strong>โอนผ่านธนาคาร</strong>
+                        <div class="small">
+                            ธนาคารกสิกรไทย<br>
+                            เลขบัญชี 123-4-56789-0
+                        </div>
+                    </div>
+
+                    <label style="margin-top:12px;display:block">แนบสลิปการโอนเงิน</label>
+                    <input type="file" id="slip" accept="image/*" onchange="previewSlip()">
+
+                    <div id="slipPreview" style="margin-top:10px;display:none;text-align:center">
+                        <div class="small">ตัวอย่างสลิป</div>
+                        <img id="slipImg" style="max-width:100%;border-radius:10px;border:1px solid #eee">
+                    </div>
+
+                </div>
+
+                <button class="btn" style="margin-top:12px" onclick="placeOrder()">ยืนยันคำสั่งซื้อ</button>
+            </aside>
+
+        </div>
+    </main>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('farm_cart') || '[]');
+
+        function renderSummary() {
+            const el = document.getElementById('summary');
+            if (!cart.length) {
+                el.innerHTML = 'ยังไม่มีสินค้าในตะกร้า';
+                return;
+            }
+            let total = 0;
+            el.innerHTML = '';
+            cart.forEach(i => {
+                el.innerHTML += `${i.name} x ${i.qty} = ${i.qty * i.price} ฿<br>`;
+                total += i.qty * i.price;
+            });
+            el.innerHTML += `<hr><strong>รวม ${total} ฿</strong>`;
+        }
+
+        function clearCart() {
+            if (!cart.length) return alert('ไม่มีสินค้าให้ลบ');
+            if (!confirm('ลบสินค้าทั้งหมดหรือไม่?')) return;
+            localStorage.removeItem('farm_cart');
+            cart = [];
+            renderSummary();
+        }
+
+        function updatePayment() {
+            const m = paymethod.value;
+            paymentInfo.style.display = m ? 'block' : 'none';
+            payQR.style.display = m === 'qr' ? 'block' : 'none';
+            payBank.style.display = m === 'bank' ? 'block' : 'none';
+        }
+
+        async function placeOrder() {
+            if (!cart.length) return alert('ตะกร้าว่าง');
+            if (!name.value || !address.value || !phone.value)
+                return alert('กรอกข้อมูลให้ครบ');
+            if (!paymethod.value)
+                return alert('เลือกช่องทางชำระเงิน');
+            if (!slip.files.length)
+                return alert('กรุณาแนบสลิป');
+
+            const reader = new FileReader();
+            reader.onload = async () => {
+
+                const total = cart.reduce((s, i) => s + i.qty * i.price, 0);
+
+                const data = {
+                    name: name.value,
+                    address: address.value,
+                    phone: phone.value,
+                    paymethod: paymethod.value,
+                    items: cart.map(i => `${i.name} x${i.qty}`).join(", "),
+                    total: total,
+                    slip: reader.result
+                };
+
+                await fetch("🔴 ใส่ URL Web App ของคุณตรงนี้ 🔴", {
+                    method: "POST",
+                    body: JSON.stringify(data)
+                });
+
+                alert("บันทึกคำสั่งซื้อเรียบร้อย");
+                localStorage.removeItem('farm_cart');
+                cart = [];
+                renderSummary();
+            };
+
+            reader.readAsDataURL(slip.files[0]);
+        }
+
+        function previewSlip() {
+            const file = slip.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = e => {
+                slipImg.src = e.target.result;
+                slipPreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        renderSummary();
+    </script>
+
+    <footer>
+         © 2025 ฟาร์มเห็ดดงน้ำฉ่า • สงวนลิขสิทธิ์
+    </footer>
+
+</body>
+
+</html>
